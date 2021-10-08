@@ -30,7 +30,7 @@ app.get('/info', (req, res) => {
 });
 
 app.get('/history', (req, res) => {
-  res.render('history');
+  res.render('history', {layout: 'dark'});
 });
 
 app.use((req, res) => {
