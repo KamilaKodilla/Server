@@ -10,9 +10,10 @@ app.engine('.hbs', hbs());
 app.set('view engine', '.hbs');
 
 app.use(express.urlencoded({ extended: false }));
+app.use(express.static(path.join(__dirname, '/public')));
+
 
 app.post('/contact/send-message', upload.single('image'), (req, res) => {
-
   const { author, sender, title, message } = req.body;
   const image = req.file;
 
@@ -24,14 +25,14 @@ app.post('/contact/send-message', upload.single('image'), (req, res) => {
   }
 });
 
-app.use(express.static(path.join(__dirname, '/public')));
+
 
 app.get('/', (req, res) => {
-  res.render('index', { layout: false });
+  res.render('index');
 });
 
 app.get('/hello/:name', (req, res) => {
-  res.render('hello', { layout: false, name: req.params.name });
+  res.render('hello', {name: req.params.name });
 });
 
 app.get('/about', (req, res) => {
